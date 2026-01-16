@@ -5,64 +5,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Онлайн-библиотека образовательного проекта</title>
     <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --bg: #f4f7f6;
+        }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-            background-color: #f9f9f9;
+            font-family: -apple-system, system-ui, sans-serif;
+            display: flex;
+            margin: 0;
+            min-height: 100vh;
+            background: var(--bg);
         }
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        h2 { color: #34495e; margin-top: 30px; }
-        ul { list-style: none; padding: 0; }
-        li { margin-bottom: 10px; }
-        
-        /* Стили для ссылок-кнопок */
-        .nav-links a {
-            display: inline-block;
-            background: #0366d6;
+        /* Боковая панель */
+        nav {
+            width: 280px;
+            background: var(--primary);
             color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin: 5px 5px 5px 0;
-            transition: background 0.3s;
+            padding: 20px;
+            box-sizing: border-box;
+            position: sticky;
+            top: 0;
+            height: 100vh;
         }
-        .nav-links a:hover {
-            background: #024ea2;
+        nav h2 { font-size: 1.2rem; border-bottom: 1px solid #455a64; padding-bottom: 10px; }
+        nav ul { list-style: none; padding: 0; }
+        nav li { margin: 15px 0; }
+        nav a { 
+            color: #bdc3c7; 
+            text-decoration: none; 
+            font-size: 1.1rem; 
+            cursor: pointer;
+            transition: 0.2s;
         }
-        .emoji { margin-right: 8px; }
+        nav a:hover { color: white; padding-left: 5px; }
+        
+        /* Контент */
+        main {
+            flex-grow: 1;
+            padding: 40px;
+            max-width: 900px;
+        }
+        .page { display: none; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .active { display: block; animation: fadeIn 0.4s; }
+        
+        h1 { color: var(--primary); margin-top: 0; }
+        .btn-box { background: #eef2f3; padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid var(--accent); }
+        a { color: var(--accent); }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            nav { width: 100%; height: auto; position: static; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1><span class="emoji">📚</span>Онлайн-библиотека образовательного проекта</h1>
-        
-        <p>Добро пожаловать в онлайн-библиотеку для студентов педагогических направлений и молодых специалистов.</p>
 
-        <h2><span class="emoji">🔎</span>Что вы найдёте</h2>
+<nav>
+    <h2>📚 Онлайн-библиотека</h2>
+    <ul>
+        <li><a onclick="showPage('home')">🏠 Главная</a></li>
+        <li><a onclick="showPage('video')">🎥 Видео</a></li>
+        <li><a onclick="showPage('articles')">📄 Статьи</a></li>
+        <li><a onclick="showPage('tools')">🛠️ Инструменты</a></li>
+        <li><a onclick="showPage('topics')">🎯 Подборки</a></li>
+        <li><a onclick="showPage('feedback')">📩 Обратная связь</a></li>
+    </ul>
+</nav>
+
+<main>
+    <!-- Главная -->
+    <div id="home" class="page active">
+        <h1>Онлайн-библиотека образовательного проекта</h1>
+        <p>Добро пожаловать в онлайн-библиотеку для студентов педагогических направлений и молодых специалистов.</p>
+        <h2>🔎 Что вы найдёте</h2>
         <ul>
             <li><strong>🎥 Видео:</strong> мастер-классы, интервью, проекты студентов</li>
             <li><strong>📄 Статьи:</strong> карьера, инклюзивное образование, эмоциональная устойчивость</li>
             <li><strong>🛠️ Инструменты:</strong> шаблоны, чек-листы, полезные сервисы</li>
         </ul>
-
-        <h2><span class="emoji">🚀</span>Быстрый доступ</h2>
-        <div class="nav-links">
-            <a href="https://github.com">Видео</a>
-            <a href="https://github.com">Статьи</a>
-            <a href="https://github.com">Инструменты</a>
-            <a href="https://github.com">Подборки по темам</a>
-            <a href="https://github.com">Обратная связь</a>
-        </div>
     </div>
+
+    <!-- Видео -->
+    <div id="video" class="page">
+        <h1>🎥 Видео</h1>
+        <p>В этом разделе собраны видеоматериалы проекта.</p>
+        <h3>🎓 Мастер-классы</h3>
+        <div class="btn-box">🔗 <a href="ССЫЛКА_НА_VK" target="_blank">Инклюзивное образование в школе</a></div>
+        <div class="btn-box">🔗 <a href="ССЫЛКА_НА_VK" target="_blank">Работа с эмоциональной нагрузкой</a></div>
+        <h3>🎤 Интервью</h3>
+        <div class="btn-box">🔗 <a href="ССЫЛКА_НА_VK" target="_blank">Интервью с практикующим педагогом</a></div>
+        <p>⭐ <a href="ССЫЛКА_НА_GOOGLE_FORM">Оценить видео</a></p>
+    </div>
+
+    <!-- Статьи -->
+    <div id="articles" class="page">
+        <h1>📄 Статьи и материалы</h1>
+        <h3>🧭 Карьера</h3>
+        <ul><li><a href="ССЫЛКА_НА_GOOGLE_DOC">Как начать карьеру педагога</a></li></ul>
+        <h3>♿ Инклюзия</h3>
+        <ul><li><a href="ССЫЛКА">Основы инклюзивного подхода</a></li></ul>
+        <p>⭐ <a href="ССЫЛКА_НА_GOOGLE_FORM">Оставить отзыв</a></p>
+    </div>
+
+    <!-- Инструменты -->
+    <div id="tools" class="page">
+        <h1>🛠️ Практические инструменты</h1>
+        <h3>📄 Шаблоны</h3>
+        <p>✅ <a href="ССЫЛКА_НА_GOOGLE_DRIVE">Шаблон резюме педагога</a></p>
+        <h3>✅ Чек-листы</h3>
+        <p>✅ <a href="ССЫЛКА">Самооценка навыков</a></p>
+        <p>⬇ Все материалы доступны для скачивания.</p>
+    </div>
+
+    <!-- Подборки -->
+    <div id="topics" class="page">
+        <h1>🎯 Подборки по интересам</h1>
+        <h3>👩‍🏫 Для студентов</h3>
+        <p>Подборка актуальных материалов для успешного старта в профессии...</p>
+        <h3>♿ Инклюзия</h3>
+        <p>Специализированные методики и видео-уроки...</p>
+    </div>
+
+    <!-- Обратная связь -->
+    <div id="feedback" class="page">
+        <h1>📩 Обратная связь</h1>
+        <p>У вас есть вопросы или предложения? Напишите нам!</p>
+        <div class="btn-box">📧 Email: example@pedproyect.ru</div>
+        <div class="btn-box">📝 <a href="ССЫЛКА_НА_ФОРМУ">Заполнить анкету участника</a></div>
+    </div>
+</main>
+
+<script>
+    function showPage(pageId) {
+        // Скрыть все страницы
+        const pages = document.querySelectorAll('.page');
+        pages.forEach(page => page.classList.remove('active'));
+        
+        // Показать выбранную
+        document.getElementById(pageId).classList.add('active');
+        
+        // Прокрутка вверх на мобильных
+        if(window.innerWidth < 768) window.scrollTo(0,0);
+    }
+</script>
+
 </body>
 </html>
