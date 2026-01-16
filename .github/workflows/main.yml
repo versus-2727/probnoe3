@@ -1,0 +1,13 @@
+name: Sync Wiki to Pages
+on:
+  gollum: # Запускается при каждом изменении Wiki
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: lonnen/sync-wiki-to-branch-action@v1
+        with:
+          branch: docs # Ветка, куда копируются файлы
+          github_token: ${{ secrets.GITHUB_TOKEN }}
